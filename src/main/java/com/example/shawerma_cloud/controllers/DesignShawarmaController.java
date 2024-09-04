@@ -3,9 +3,11 @@ package com.example.shawerma_cloud.controllers;
 import com.example.shawerma_cloud.data.Ingredient;
 import com.example.shawerma_cloud.data.Shawarma;
 import com.example.shawerma_cloud.data.ShawarmaOrder;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -52,7 +54,10 @@ public class DesignShawarmaController {
     }
 
     @PostMapping
-    public String processShawarma(Shawarma shawarma, @ModelAttribute ShawarmaOrder shawarmaOrder){
+    public String processShawarma(@Valid Shawarma shawarma, Errors errors, @ModelAttribute ShawarmaOrder shawarmaOrder){
+        if(errors.hasErrors()){
+            return "design";
+        }
         shawarmaOrder.addShawarma(shawarma);
         log.info("Processing shawarma: {}", shawarma);
         return "redirect:/orders/current";
