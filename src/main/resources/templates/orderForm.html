@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shawa Cloud</title>
+    <link rel = "stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+    <form method="POST" th:action="@{/orders}" th:object="${shawarmaOrder}">
+        <h1>Order your shawa creation</h1>
+        <h3>Your shawermas in this order:</h3>
+        <a th:href="@{/design}" id="another">Design another shawa</a><br/>
+        <ul>
+            <li th:each="shawarma : ${shawarmaOrder.shawarmas}">
+                <span th:text="${shawarma.name}">shawarma name</span>
+            </li>
+        </ul>
+        <h3>Deliver my taco masterpieces to...:</h3>
+        <label th:for="deliveryName">Name:</label>
+        <input type="text" th:field="*{deliveryName}">
+        <br/>
+
+        <label th:for="deliveryCity">City:</label>
+        <input type="text" th:field="*{deliveryCity}">
+        <br/>
+
+        <label th:for="deliveryStreet">Street address:</label>
+        <input type="text" th:field="*{deliveryStreet}">
+        <br/>
+
+        <label th:for="deliveryState">State:</label>
+        <input type="text" th:field="*{deliveryState}">
+        <br/>
+
+        <label th:for="deliveryZip">Zip code:</label>
+        <input type="text" th:field="*{deliveryZip}">
+        <br/>
+
+        <h3>How im pay...:</h3>
+
+        <label th:for="ccNumber">Credit card:</label>
+        <input type="text" th:field="*{deliveryCity}">
+        <br/>
+
+        <label th:for="ccExpiration">Expiration:</label>
+        <input type="text" th:field="*{deliveryCity}">
+        <br/>
+
+        <label th:for="ccCVV">CVV:</label>
+        <input type="text" th:field="*{deliveryCity}">
+        <br/>
+
+        <input type="submit" value="Submit order">
+
+    </form>>
+</body>
+</html>
